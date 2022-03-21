@@ -1,4 +1,4 @@
-package http
+package handler
 
 import (
 	"github.com/gin-gonic/gin"
@@ -14,7 +14,7 @@ func (h Handler) Find(c *gin.Context) {
 		response.Err(err).JSON(c)
 		return
 	}
-	entities, info, err := h.service.ModulService.Find(c, request.Filter, request.Pagination)
+	entities, info, err := h.service.Find(c, request.Filter, request.Pagination)
 	if err != nil {
 		response.Err(err).JSON(c)
 		return

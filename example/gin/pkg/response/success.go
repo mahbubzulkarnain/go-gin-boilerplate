@@ -1,8 +1,9 @@
 package response
 
 import (
-	"github.com/gomodul/abstraction"
 	"net/http"
+
+	"github.com/gomodul/abstraction"
 )
 
 // Created ...

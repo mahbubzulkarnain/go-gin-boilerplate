@@ -1,4 +1,4 @@
-package http
+package handler
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,19 +7,17 @@ import (
 	"modul/example/gin/pkg/response"
 )
 
-// UpdateByID ...
-func (h Handler) UpdateByID(c *gin.Context) {
-	id := c.Param("id")
-
-	var payload dto.UpdateByIDRequest
+// Create ...
+func (h Handler) Create(c *gin.Context) {
+	var payload dto.CreateRequest
 	if err := c.ShouldBindJSON(&payload); err != nil {
 		response.ErrBadRequest.JSON(c, payload)
 		return
 	}
-	res, err := h.service.ModulService.UpdateByID(c, id, payload)
+	res, err := h.service.Create(c, payload)
 	if err != nil {
 		response.Err(err).JSON(c)
 		return
 	}
-	response.Success(res).JSON(c)
+	response.Created(res).JSON(c)
 }
